@@ -1,9 +1,11 @@
 package br.com.senai.api_clinica_veterinaria.entity;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+@Entity
 public class Veterinario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -11,9 +13,9 @@ public class Veterinario {
     private String nome;
     private String crmv;
     private String especializacao;
-    private int jornada;
+    private Integer jornada;
     
-    public Veterinario(Long id, String nome, String crmv, String especializacao, int jornada) {
+    public Veterinario(Long id, String nome, String crmv, String especializacao, Integer jornada) {
         this.id = id;
         this.nome = nome;
         this.crmv = crmv;
@@ -53,11 +55,11 @@ public class Veterinario {
         this.especializacao = especializacao;
     }
 
-    public int getJornada() {
+    public Integer getJornada() {
         return jornada;
     }
 
-    public void setJornada(int jornada) {
+    public void setJornada(Integer jornada) {
         this.jornada = jornada;
     }
 

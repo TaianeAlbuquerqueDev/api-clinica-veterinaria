@@ -15,13 +15,13 @@ public class Endereco {
     private String localidade;
     private String uf;
     private String bairro;
-    private int numero;
+    private Integer numero;
     private String complemento;
     private String referencia;
-    private boolean principal;
+    private Boolean principal;
 
-    public Endereco(Long id, String cep, String logradouro, String localidade, String uf, String bairro, int numero,
-            String complemento, String referencia, boolean principal) {
+    public Endereco(Long id, String cep, String logradouro, String localidade, String uf, String bairro, Integer numero,
+            String complemento, String referencia, Boolean principal) {
         this.id = id;
         this.cep = cep;
         this.logradouro = logradouro;
@@ -82,11 +82,11 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public int getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 
@@ -106,12 +106,14 @@ public class Endereco {
         this.referencia = referencia;
     }
 
-    public boolean isPrincipal() {
+    public Boolean getPrincipal() {
         return principal;
     }
 
-    public void setPrincipal(boolean principal) {
+    public void setPrincipal(Boolean principal) {
         this.principal = principal;
     }
+
+    
 
 }

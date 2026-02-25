@@ -10,9 +10,9 @@ public class Dono {
     private Long id;
     private String nome;
     private String cpf;
-    private boolean status;
+    private Boolean status;
     
-    public Dono(Long id, String nome, String cpf, boolean status) {
+    public Dono(Long id, String nome, String cpf, Boolean status) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -43,13 +43,11 @@ public class Dono {
         this.cpf = cpf;
     }
 
-    public boolean isStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
-    }
-
-    
+    }    
 }
