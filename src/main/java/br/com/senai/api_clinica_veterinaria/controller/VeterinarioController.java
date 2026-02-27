@@ -15,6 +15,7 @@ import br.com.senai.api_clinica_veterinaria.entity.Veterinario;
 import br.com.senai.api_clinica_veterinaria.exception.Response;
 import br.com.senai.api_clinica_veterinaria.repository.VeterinarioRepository;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/veterinarios")
@@ -23,7 +24,7 @@ public class VeterinarioController {
     private VeterinarioRepository repository;
 
     @PostMapping
-    public Response cadastrarVeterinario(@RequestBody Veterinario veterinario) {
+    public Response cadastrarVeterinario(@Valid @RequestBody Veterinario veterinario) {
         repository.save(veterinario);
         return new Response(201, "Veterinario(a) cadastrado(a) com sucesso!");
     }
@@ -34,7 +35,7 @@ public class VeterinarioController {
     }
 
     @PutMapping("/{id}")
-    public Response atualizarConsulta(@PathVariable Long id, @RequestBody Veterinario novo) {
+    public Response atualizarVeterinario(@PathVariable Long id, @RequestBody Veterinario novo) {
         if (!repository.existsById(id)) {
             return new Response(404, "Veterinario(a) não encontrado(a)!");
         }
@@ -60,7 +61,7 @@ public class VeterinarioController {
     }
 
     @DeleteMapping("/{id}")
-    public Response deletarConsulta(@PathVariable Long id) {
+    public Response deletarVeterinario(@PathVariable Long id) {
         if (!repository.existsById(id)) {
             return new Response(404, "Veterinario(a) não encontrado(a)!");
         }

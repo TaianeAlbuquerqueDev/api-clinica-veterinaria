@@ -15,6 +15,7 @@ import br.com.senai.api_clinica_veterinaria.entity.Telefone;
 import br.com.senai.api_clinica_veterinaria.exception.Response;
 import br.com.senai.api_clinica_veterinaria.repository.TelefoneRepository;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/telefones")
@@ -23,7 +24,7 @@ public class TelefoneControler {
     private TelefoneRepository repository;
 
     @PostMapping
-    public Response cadastrarDono(@RequestBody Telefone telefone) {
+    public Response cadastrarTelefone(@Valid @RequestBody Telefone telefone) {
         repository.save(telefone);
         return new Response(201, "Telefone cadastrado com sucesso!");
     }
@@ -51,7 +52,7 @@ public class TelefoneControler {
     }
 
     @DeleteMapping("/{id}")
-    public Response deletarConsulta(@PathVariable Long id) {
+    public Response deletarTelefone(@PathVariable Long id) {
         if (!repository.existsById(id)) {
             return new Response(404, "Telefone não encontrado!");
         }

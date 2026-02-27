@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.senai.api_clinica_veterinaria.entity.Dono;
 import br.com.senai.api_clinica_veterinaria.exception.Response;
 import br.com.senai.api_clinica_veterinaria.repository.DonoRepository;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/donos")
@@ -23,7 +24,7 @@ public class DonoController {
     private DonoRepository repository;
 
     @PostMapping
-    public Response cadastrarDono(@RequestBody Dono dono) {
+    public Response cadastrarDono(@Valid @RequestBody Dono dono) {
         repository.save(dono);
         return new Response(201, "Dono(a) cadastrado(a) com sucesso!");
     }
@@ -34,7 +35,7 @@ public class DonoController {
     }
 
     @PutMapping("/{id}")
-    public Response atualizarConsulta(@PathVariable Long id, @RequestBody Dono novo) {
+    public Response atualizarDono(@PathVariable Long id, @RequestBody Dono novo) {
         if (!repository.existsById(id)) {
             return new Response(404, "Dono(a) não encontrado(a)!");
         }
@@ -57,7 +58,7 @@ public class DonoController {
     }
 
     @DeleteMapping("/{id}")
-    public Response deletarConsulta(@PathVariable Long id) {
+    public Response deletarDono(@PathVariable Long id) {
         if (!repository.existsById(id)) {
             return new Response(404, "Dono(a) não encontrado(a)!");
         }

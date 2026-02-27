@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.senai.api_clinica_veterinaria.entity.Endereco;
 import br.com.senai.api_clinica_veterinaria.exception.Response;
 import br.com.senai.api_clinica_veterinaria.repository.EnderecoRepository;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/enderecos")
@@ -23,7 +24,7 @@ public class EnderecoController {
     private EnderecoRepository repository;
 
     @PostMapping
-    public Response cadastrarEndereco(@RequestBody Endereco endereco) {
+    public Response cadastrarEndereco(@Valid @RequestBody Endereco endereco) {
         repository.save(endereco);
         return new Response(201, "Endereço cadastrado(a) com sucesso!");
     }
@@ -39,7 +40,6 @@ public class EnderecoController {
             return new Response(404, "Endereço não encontrado!");
         }
    
-
         Endereco endereco = repository.findById(id).get();
 
         if (novo.getCep() != null) {

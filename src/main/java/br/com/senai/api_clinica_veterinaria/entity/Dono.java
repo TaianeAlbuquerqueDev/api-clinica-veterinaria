@@ -3,15 +3,26 @@ package br.com.senai.api_clinica_veterinaria.entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class Dono {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotBlank(message = "É necessário informar um nome!")
+    @Size(min = 3, max = 80, message = "Mínimo de 3 e máximo de 80 caracteres para o nome!")
     private String nome;
+
+    @NotBlank(message = "É necessário informar o CPF!")
+    @Size(min = 11, max = 11, message = "Informe 11 caracteres para o CPF, sem traços!")
     private String cpf;
+
+    @NotNull(message = "É necessário informar o status! ('true' para endereço principal, 'false' para endereço secundário).")
     private Boolean status;
-    
+
     public Dono(Long id, String nome, String cpf, Boolean status) {
         this.id = id;
         this.nome = nome;
@@ -49,5 +60,5 @@ public class Dono {
 
     public void setStatus(Boolean status) {
         this.status = status;
-    }    
+    }
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.senai.api_clinica_veterinaria.entity.Consulta;
 import br.com.senai.api_clinica_veterinaria.exception.Response;
 import br.com.senai.api_clinica_veterinaria.repository.ConsultaRepository;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/consultas")
@@ -24,7 +25,7 @@ public class ConsultaController {
     private ConsultaRepository repository;
 
     @PostMapping
-    public Response cadastrarConsulta(@RequestBody Consulta consulta) {
+    public Response cadastrarConsulta(@Valid @RequestBody Consulta consulta) {
         repository.save(consulta);
         return new Response(201, "Consulta cadastrada com sucesso!");
     }
