@@ -29,6 +29,7 @@ public class AnimalController {
         repository.save(animal);
         return new Response(201, "Animal cadastrado com sucesso!");
     }
+        //Animal cadastrado com sucesso (201 Created - Resposta de Sucesso)
 
     @GetMapping
     public List<Animal> getAllAnimals(){
@@ -40,6 +41,8 @@ public class AnimalController {
         if (!repository.existsById(id)) {
             return new Response(404, "Animal não encontrado!");
         }
+        //Animal não encontrado (404 Not Found- Recurso não encontrado)
+
 
         Animal animal = repository.findById(id).get();
 
@@ -71,6 +74,8 @@ public class AnimalController {
 
         return new Response(200, "Animal atualizado com sucesso!");
     }
+        //Animal não encontrado (204 No Content - Retorna ok, mas sem conteúdo)
+
 
     @DeleteMapping("/{id}")
     public Response deletarAnimal(@PathVariable Long id) {
@@ -80,4 +85,6 @@ public class AnimalController {
         repository.deleteById(id);
         return new Response(204, "Animal deletado com sucesso!");
     }
+        //Corpo da solicitação de animal retorna vazio, por ser um delete, não precisa retornar corpo (204 No Content - Retorna ok, mas sem conteúdo)
+
 }
