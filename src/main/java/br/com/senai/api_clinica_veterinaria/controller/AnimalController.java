@@ -74,7 +74,7 @@ public class AnimalController {
 
         return new Response(200, "Animal atualizado com sucesso!");
     }
-        //Animal não encontrado (204 No Content - Retorna ok, mas sem conteúdo)
+        //Animal atualizado com sucesso (200 Resposta padrão  - Retorna ok e é de uso padrão de API)
 
 
     @DeleteMapping("/{id}")
