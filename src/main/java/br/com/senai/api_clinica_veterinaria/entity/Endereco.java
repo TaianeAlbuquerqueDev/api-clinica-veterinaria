@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -48,19 +50,9 @@ public class Endereco {
     @NotNull(message = "É necessário informar o status! ('true' para endereço principal, 'false' para endereço secundário).")
     private Boolean principal;
 
-    public Endereco(Long id, String cep, String logradouro, String localidade, String uf, String bairro, Integer numero,
-            String complemento, String referencia, Boolean principal) {
-        this.id = id;
-        this.cep = cep;
-        this.logradouro = logradouro;
-        this.localidade = localidade;
-        this.uf = uf;
-        this.bairro = bairro;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.referencia = referencia;
-        this.principal = principal;
-    }
+    @ManyToOne
+    @JoinColumn(name = "fk_dono")
+    private Dono dono;
 
     public Long getId() {
         return id;
@@ -142,6 +134,14 @@ public class Endereco {
         this.principal = principal;
     }
 
-    
+    public Dono getDono() {
+        return dono;
+    }
+
+    public void setDono(Dono dono) {
+        this.dono = dono;
+    }
+
+   
 
 }

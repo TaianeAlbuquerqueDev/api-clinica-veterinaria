@@ -1,9 +1,14 @@
 package br.com.senai.api_clinica_veterinaria.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -37,16 +42,12 @@ public class Animal {
     @NotNull(message = "É necessário informar um status. ('true' para animal ativo, 'false' para animal inativo!)")
     private Boolean status;
 
-    public Animal(Long id, String nome, String especie, String raca, Integer idade, String infosMedicas,
-            Boolean status) {
-        this.id = id;
-        this.nome = nome;
-        this.especie = especie;
-        this.raca = raca;
-        this.idade = idade;
-        this.infosMedicas = infosMedicas;
-        this.status = status;
-    }
+    @OneToMany(mappedBy = "animal")
+    private List<Consulta> consultas;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_dono")
+    private Dono dono;
 
     public Long getId() {
         return id;
@@ -104,4 +105,21 @@ public class Animal {
         this.status = status;
     }
 
+    public List<Consulta> getConsultas() {
+        return consultas;
+    }
+
+    public void setConsultas(List<Consulta> consultas) {
+        this.consultas = consultas;
+    }
+
+    public Dono getDono() {
+        return dono;
+    }
+
+    public void setDono(Dono dono) {
+        this.dono = dono;
+    }
+
+  
 }

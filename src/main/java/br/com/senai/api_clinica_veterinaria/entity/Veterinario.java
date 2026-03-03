@@ -1,9 +1,13 @@
 package br.com.senai.api_clinica_veterinaria.entity;
 
+import java.util.List;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -21,6 +25,7 @@ public class Veterinario {
 
     @NotBlank(message = "É necessário informar o CRMV!")
     @Size(min = 13, max = 13, message = "Informe 13 caracteres para o CRMV, sem traços!")
+    @Column(unique = true)
     private String crmv;
 
     @NotBlank(message = "É necessário informar a especialização!")
@@ -31,13 +36,9 @@ public class Veterinario {
     @Positive(message = "É necessário informar um valor inteiro, maior do que zero!")
     private Integer jornada;
     
-    public Veterinario(Long id, String nome, String crmv, String especializacao, Integer jornada) {
-        this.id = id;
-        this.nome = nome;
-        this.crmv = crmv;
-        this.especializacao = especializacao;
-        this.jornada = jornada;
-    }
+    //precisei passar essa anotação, pois a tabela interemediaria tinha um atibuto, aí preciso criar uma e referenciar aqui e many to many lá
+    @OneToMany(mappedBy = "veterinario")
+    private List<VeterinarioConsulta> veterinarioConsultas;
 
     public Long getId() {
         return id;
@@ -79,5 +80,14 @@ public class Veterinario {
         this.jornada = jornada;
     }
 
+    public List<VeterinarioConsulta> getVeterinarioConsultas() {
+        return veterinarioConsultas;
+    }
+
+    public void setVeterinarioConsultas(List<VeterinarioConsulta> veterinarioConsultas) {
+        this.veterinarioConsultas = veterinarioConsultas;
+    }
+
+    
     
 }

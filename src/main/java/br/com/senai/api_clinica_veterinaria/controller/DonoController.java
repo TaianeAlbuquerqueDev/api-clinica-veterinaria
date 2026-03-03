@@ -25,6 +25,14 @@ public class DonoController {
 
     @PostMapping
     public Response cadastrarDono(@Valid @RequestBody Dono dono) {
+
+        boolean cpfJaExiste = repository.existsByCpf(dono.getCpf());
+
+        if (cpfJaExiste) {
+            return new Response(409, "Já existe um dono cadastrado com este Cpf!");
+        }
+        //CONFLICT CODE 409 - Tentativa de cadastrar algo que já existe 
+
         repository.save(dono);
         return new Response(201, "Dono(a) cadastrado(a) com sucesso!");
     }

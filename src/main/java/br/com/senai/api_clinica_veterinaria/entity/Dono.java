@@ -1,12 +1,17 @@
 package br.com.senai.api_clinica_veterinaria.entity;
 
+import java.util.List;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
 @Entity
 public class Dono {
     @Id
@@ -19,17 +24,20 @@ public class Dono {
 
     @NotBlank(message = "É necessário informar o CPF!")
     @Size(min = 11, max = 11, message = "Informe 11 caracteres para o CPF, sem traços!")
+    @Column(unique = true)
     private String cpf;
 
     @NotNull(message = "É necessário informar o status! ('true' para endereço principal, 'false' para endereço secundário).")
     private Boolean status;
 
-    public Dono(Long id, String nome, String cpf, Boolean status) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.status = status;
-    }
+    @OneToMany(mappedBy = "dono")
+    private List<Telefone> telefones;
+
+    @OneToMany(mappedBy = "dono")
+    private List<Animal> animais;
+
+    @OneToMany(mappedBy = "dono")
+    private List<Endereco> enderecos;
 
     public Long getId() {
         return id;
@@ -62,4 +70,30 @@ public class Dono {
     public void setStatus(Boolean status) {
         this.status = status;
     }
+
+    public List<Telefone> getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
+    }
+
+    public List<Animal> getAnimais() {
+        return animais;
+    }
+
+    public void setAnimais(List<Animal> animais) {
+        this.animais = animais;
+    }
+
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
+    }
+
+  
 }
