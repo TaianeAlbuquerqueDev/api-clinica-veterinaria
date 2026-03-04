@@ -55,7 +55,7 @@ public class ConsultaController {
     @DeleteMapping("/{id}")
     public Response deletarConsulta(@PathVariable Long id) {
         if (!repository.existsById(id)) {
-            return new Response(404, "Consulta não encontrado!");
+            return new Response(404, "Consulta não encontrada!");
         }
         repository.deleteById(id);
         return new Response(204, "Consulta deletada com sucesso!");

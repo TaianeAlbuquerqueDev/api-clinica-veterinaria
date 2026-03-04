@@ -29,7 +29,7 @@ public class DonoController {
         boolean cpfJaExiste = repository.existsByCpf(dono.getCpf());
 
         if (cpfJaExiste) {
-            return new Response(409, "Já existe um dono cadastrado com este Cpf!");
+            return new Response(409, "Já existe um(a) dono(a) cadastrado(a) com este Cpf!");
         }
         //CONFLICT CODE 409 - Tentativa de cadastrar algo que já existe 
 

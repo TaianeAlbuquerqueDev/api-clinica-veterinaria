@@ -30,7 +30,7 @@ public class VeterinarioController {
         boolean crmvJaExiste = repository.existsByCrmv(veterinario.getCrmv());
 
         if (crmvJaExiste) {
-            return new Response(409, "Já existe um veterinário cadastrado com este CRMV!");
+            return new Response(409, "Já existe um(a) veterinário(a) cadastrado(a) com este CRMV!");
         }
         // CONFLICT CODE 409 - Tentativa de cadastrar algo que já existe
 
