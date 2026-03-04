@@ -36,7 +36,7 @@ public class Animal {
     @Positive(message = "É necessário informar um valor maior do que zero!")
     private Integer idade;
 
-    @Size(min = 1, max = 1000 , message = "Mínimo de 3 e máximo de 1000 caracteres para a raça!")
+    @Size(min = 1, max = 1000 , message = "Mínimo de 3 e máximo de 1000 caracteres para as infrmações médicas!")
     private String infosMedicas;
 
     @NotNull(message = "É necessário informar um status. ('true' para animal ativo, 'false' para animal inativo!)")
